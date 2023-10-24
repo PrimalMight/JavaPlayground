@@ -1,19 +1,22 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Graph {
-  private ArrayList<Vertex> vertices;
+  //private ArrayList<Vertex> vertices;
+  private HashMap<String, Vertex> vertices;
   private boolean isWeighted;
   private boolean isDirected;
 
   public Graph(boolean inputIsWeighted, boolean inputIsDirected) {
-    this.vertices = new ArrayList<Vertex>();
+    this.vertices = new HashMap<String, Vertex>();
     this.isWeighted = inputIsWeighted;
     this.isDirected = inputIsDirected;
   }
 
-  public Vertex addVertex(String data) { // TODO: are duplicates allowed?
+  public Vertex addVertex(String data) {
     Vertex newVertex = new Vertex(data);
-    this.vertices.add(newVertex);
+    //this.vertices.add(newVertex);
+    this.vertices.put(data, newVertex);
     return newVertex;
   }
 
@@ -35,11 +38,11 @@ public class Graph {
     }
   }
 
-  public void removeVertex(Vertex vertex) {
-    this.vertices.remove(vertex);
+  public void removeVertex(String key) {
+    this.vertices.remove(key);
   }
 
-  public ArrayList<Vertex> getVertices() {
+  public HashMap<String, Vertex> getVertices() {
     return this.vertices;
   }
 
@@ -52,9 +55,9 @@ public class Graph {
   }
 
   public Vertex getVertexByValue(String value) {
-    for(Vertex v: this.vertices) { 
-      if (v.getData() == value) {
-        return v;
+    for(String key: this.vertices.keySet()) { 
+      if (vertices.get(key).getData() == value) {
+        return vertices.get(key);
       }
     }
 
@@ -62,8 +65,8 @@ public class Graph {
   }
 
   public void print() {
-    for(Vertex v: this.vertices) {
-      v.print(isWeighted);
+    for(String key: this.vertices.keySet()) {
+      vertices.get(key).print(isWeighted);
     }
   }
 	
