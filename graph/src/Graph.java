@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Graph {
@@ -55,13 +54,20 @@ public class Graph {
   }
 
   public Vertex getVertexByValue(String value) {
-    for(String key: this.vertices.keySet()) { 
-      if (vertices.get(key).getData() == value) {
-        return vertices.get(key);
-      }
+    if(this.vertices.containsKey(value)) {
+      return this.vertices.get(value);
     }
-
     return null;
+  }
+
+  public Integer getDistanceBetweenVertices(String v1, String v2){
+    Vertex vertex1 = this.vertices.get(v1);
+    Vertex vertex2 = this.vertices.get(v2);
+    if(vertex1 == null || vertex2 == null){
+      return null;
+    }
+    return vertex1.getDistance(vertex2);
+  
   }
 
   public void print() {
@@ -69,5 +75,7 @@ public class Graph {
       vertices.get(key).print(isWeighted);
     }
   }
+
+
 	
 }

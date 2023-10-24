@@ -26,5 +26,11 @@ public class App {
         myGraph.addEdge(vert7, vert8, 21);
         
         myGraph.print();
+
+        Path myPath = new Path(myGraph, "1");
+        myPath.addVertex("6");
+        myPath.addVertex("5");
+        int distance = myPath.getDistance();
+        System.out.println("Path distance: " + distance);
     }
 }

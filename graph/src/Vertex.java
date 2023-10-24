@@ -31,6 +31,16 @@ public class Vertex {
         return this.edges;
     }
 
+    public Integer getDistance(Vertex endVertex) {
+        for (Edge edge : this.edges) {
+            if (edge.getEnd().equals(endVertex)) {
+                return edge.getWeight();
+            }
+        }
+        return null;
+    }
+
+
     public void print(boolean showWeight) {
         String message = "";
         message += this.data + " --> ";
